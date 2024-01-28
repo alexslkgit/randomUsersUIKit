@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23C71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="UserEntity" representedClassName="UserEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UserLocationEntity" inverseName="user" inverseEntity="UserLocationEntity"/>
+        <relationship name="name" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UserNameEntity" inverseName="user" inverseEntity="UserNameEntity"/>
+        <relationship name="picture" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UserPictureEntity" inverseName="user" inverseEntity="UserPictureEntity"/>
+    </entity>
+    <entity name="UserLocationEntity" representedClassName="UserLocationEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="cityName" optional="YES" attributeType="String"/>
+        <attribute name="country" optional="YES" attributeType="String"/>
+        <attribute name="state" optional="YES" attributeType="String"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="location" inverseEntity="UserEntity"/>
+    </entity>
+    <entity name="UserNameEntity" representedClassName="UserNameEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="first" optional="YES" attributeType="String"/>
+        <attribute name="last" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="name" inverseEntity="UserEntity"/>
+    </entity>
+    <entity name="UserPictureEntity" representedClassName="UserPictureEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="large" optional="YES" attributeType="String"/>
+        <attribute name="medium" optional="YES" attributeType="String"/>
+        <attribute name="thumbnail" optional="YES" attributeType="String"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="picture" inverseEntity="UserEntity"/>
+    </entity>
+</model>
