@@ -22,7 +22,15 @@ class UserTableViewCell: UITableViewCell {
     func configure(with user: UserUI) {
         self.userNameLabel.text = user.name
         self.locationLabel.text = user.location
-//        avatarImageView.load(url: user.picture?.large ?? "")
+        
+        let largeImageURL = user.largeImageURL.asURL()
+        let thumbnailURL = user.thumbnailURL.asURL()
+        let personPlaceholderImage = UIImage(named: "person-thumbnail")
+        
+        avatarImageView.loadImage(largeImageURL,
+                                  placeholderImage: personPlaceholderImage,
+                                  smallImageUrl: thumbnailURL)
+
     }
     
 }

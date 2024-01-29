@@ -2,8 +2,6 @@
 //  UITableView+Extension.swift
 //  Uswers App UIKit
 //
-//  Created by Slobodianiuk Oleksandr on 23.01.2024.
-//
 
 import UIKit
 

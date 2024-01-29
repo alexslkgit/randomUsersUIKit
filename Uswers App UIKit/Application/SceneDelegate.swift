@@ -6,10 +6,10 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    
     var window: UIWindow?
     var coreDataManager: CoreDataManager?
-
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -18,47 +18,60 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let networkManager = NetworkManager()
         let coreDataManager = appDelegate.coreDataManager!
         let viewModel = UsersListViewModel(coreDataManager: coreDataManager,
-                                           networkManager: networkManager, 
+                                           networkManager: networkManager,
                                            toUIConverter: toUIConverter)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let mainViewController = storyboard.instantiateViewController(withIdentifier: "UsersListViewController") as? UsersListViewController {
-            mainViewController.viewModel = viewModel
-
-            if let windowScene = scene as? UIWindowScene {
-                window = UIWindow(windowScene: windowScene)
-                window?.rootViewController = UINavigationController(rootViewController: mainViewController)
-                window?.makeKeyAndVisible()
-            }
+        
+        guard let usersListViewController = storyboard.instantiateViewController(ofType: UsersListViewController.self) else { return }
+        
+        usersListViewController.viewModel = viewModel
+        
+        let usersNavigationController = UINavigationController(rootViewController: usersListViewController)
+        usersNavigationController.tabBarItem = UITabBarItem(title: "Users", image: nil, selectedImage: nil)
+        
+        guard let settingsViewController = storyboard.instantiateViewController(withIdentifier: "SettingsViewController") as? SettingsViewController else {
+            return
+        }
+        settingsViewController.tabBarItem = UITabBarItem(title: "Settings", image: nil, selectedImage: nil)
+        
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [usersNavigationController, settingsViewController]
+        
+        if let windowScene = scene as? UIWindowScene {
+            window = UIWindow(windowScene: windowScene)
+            window?.rootViewController = tabBarController
+            window?.makeKeyAndVisible()
         }
     }
-
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
         // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
     }
-
+    
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
     }
-
+    
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
     }
-
+    
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
     }
-
+    
     func sceneDidEnterBackground(_ scene: UIScene) {
-
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        appDelegate.saveContext()
     }
-
-
 }
 

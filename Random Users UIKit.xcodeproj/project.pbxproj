@@ -33,6 +33,12 @@
 		67A5369D2B66CDFE00C53E26 /* UserUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A5369C2B66CDFE00C53E26 /* UserUI.swift */; };
 		67A536A12B66CE6600C53E26 /* ToUIConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A536A02B66CE6600C53E26 /* ToUIConverter.swift */; };
 		67A536A32B66CECC00C53E26 /* UserEntityToUIConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A536A22B66CECC00C53E26 /* UserEntityToUIConverter.swift */; };
+		67A536A52B67FB4C00C53E26 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A536A42B67FB4C00C53E26 /* UIImageView+Extension.swift */; };
+		67A536A72B6826AC00C53E26 /* URLConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A536A62B6826AC00C53E26 /* URLConvertible.swift */; };
+		67A536AA2B682F3400C53E26 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A536A92B682F3400C53E26 /* SettingsViewController.swift */; };
+		67A536AC2B682F7D00C53E26 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A536AB2B682F7D00C53E26 /* UserDetailsViewController.swift */; };
+		67A536AE2B68308400C53E26 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A536AD2B68308400C53E26 /* UIStoryboard+Extension.swift */; };
+		67A536B22B68312100C53E26 /* UserDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A536B12B68312100C53E26 /* UserDetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +89,12 @@
 		67A5369C2B66CDFE00C53E26 /* UserUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUI.swift; sourceTree = "<group>"; };
 		67A536A02B66CE6600C53E26 /* ToUIConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToUIConverter.swift; sourceTree = "<group>"; };
 		67A536A22B66CECC00C53E26 /* UserEntityToUIConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntityToUIConverter.swift; sourceTree = "<group>"; };
+		67A536A42B67FB4C00C53E26 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		67A536A62B6826AC00C53E26 /* URLConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConvertible.swift; sourceTree = "<group>"; };
+		67A536A92B682F3400C53E26 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		67A536AB2B682F7D00C53E26 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
+		67A536AD2B68308400C53E26 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
+		67A536B12B68312100C53E26 /* UserDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,14 +145,13 @@
 		6706991B2B5FEC7E00B5DB4A /* Uswers App UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				67A536A82B682F1E00C53E26 /* Features */,
 				67A5368D2B66AD8300C53E26 /* Data */,
 				6706995B2B62D78200B5DB4A /* Cells */,
 				670699552B6005A300B5DB4A /* Extensions */,
 				6706994F2B5FEC8500B5DB4A /* Application */,
-				670699202B5FEC7E00B5DB4A /* UsersListViewController.swift */,
 				670699222B5FEC7E00B5DB4A /* Main.storyboard */,
 				6706992D2B5FEC7F00B5DB4A /* Info.plist */,
-				670699642B63FCFD00B5DB4A /* UsersListViewModel.swift */,
 			);
 			path = "Uswers App UIKit";
 			sourceTree = "<group>";
@@ -187,6 +198,9 @@
 			isa = PBXGroup;
 			children = (
 				670699562B6005B800B5DB4A /* UITableView+Extension.swift */,
+				67A536A42B67FB4C00C53E26 /* UIImageView+Extension.swift */,
+				67A536A62B6826AC00C53E26 /* URLConvertible.swift */,
+				67A536AD2B68308400C53E26 /* UIStoryboard+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -248,6 +262,34 @@
 				67A536A22B66CECC00C53E26 /* UserEntityToUIConverter.swift */,
 			);
 			path = ToUIModel;
+			sourceTree = "<group>";
+		};
+		67A536A82B682F1E00C53E26 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				67A536AF2B6830F700C53E26 /* ViewControllers */,
+				67A536B02B68310200C53E26 /* ViewModels */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		67A536AF2B6830F700C53E26 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				67A536A92B682F3400C53E26 /* SettingsViewController.swift */,
+				670699202B5FEC7E00B5DB4A /* UsersListViewController.swift */,
+				67A536AB2B682F7D00C53E26 /* UserDetailsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		67A536B02B68310200C53E26 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				670699642B63FCFD00B5DB4A /* UsersListViewModel.swift */,
+				67A536B12B68312100C53E26 /* UserDetailsViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,10 +431,16 @@
 				670699572B6005B800B5DB4A /* UITableView+Extension.swift in Sources */,
 				6706991F2B5FEC7E00B5DB4A /* SceneDelegate.swift in Sources */,
 				670699652B63FCFD00B5DB4A /* UsersListViewModel.swift in Sources */,
+				67A536A72B6826AC00C53E26 /* URLConvertible.swift in Sources */,
 				67A5368C2B66AAB600C53E26 /* CoreDataStack.swift in Sources */,
 				67A536952B66ADE900C53E26 /* LocationEntityConverter.swift in Sources */,
 				67A536992B66BC0800C53E26 /* PictureEntityConverter.swift in Sources */,
+				67A536B22B68312100C53E26 /* UserDetailsViewModel.swift in Sources */,
+				67A536A52B67FB4C00C53E26 /* UIImageView+Extension.swift in Sources */,
+				67A536AC2B682F7D00C53E26 /* UserDetailsViewController.swift in Sources */,
 				67A536932B66ADC300C53E26 /* UserEntityConverter.swift in Sources */,
+				67A536AE2B68308400C53E26 /* UIStoryboard+Extension.swift in Sources */,
+				67A536AA2B682F3400C53E26 /* SettingsViewController.swift in Sources */,
 				67A536A32B66CECC00C53E26 /* UserEntityToUIConverter.swift in Sources */,
 				670699622B63FA4900B5DB4A /* UserTableViewCell.swift in Sources */,
 				67A536912B66ADA700C53E26 /* EntityConverter.swift in Sources */,

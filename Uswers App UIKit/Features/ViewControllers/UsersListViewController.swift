@@ -8,7 +8,9 @@ import UIKit
 class UsersListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-        
+    
+    private let refreshControl = UIRefreshControl()
+    
     var viewModel: UsersListViewModel! {
         didSet {
             loadViewIfNeeded()
@@ -29,12 +31,26 @@ class UsersListViewController: UIViewController {
     }
     
     private func setupUI() {
+        
         tableView.register(cell: UserTableViewCell.self)
         tableView.rowHeight = 120
+        
+        refreshControl.addTarget(self,
+                                 action: #selector(refreshData(_:)),
+                                 for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+    
+    @objc private func refreshData(_ sender: Any) {
+        viewModel.fetchUsers {
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+        }
     }
 }
 
-extension UsersListViewController: UITableViewDataSource {
+
+extension UsersListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRowsInSection()
@@ -49,4 +65,16 @@ extension UsersListViewController: UITableViewDataSource {
         cell.configure(with: user)
         return cell
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let userDetailsViewController = storyboard.instantiateViewController(ofType: UserDetailsViewController.self) {
+            let user = viewModel.cellForRowAt(indexPath)
+            let userDetailsViewModel = UserDetailsViewModel(user: user)
+            userDetailsViewController.viewModel = userDetailsViewModel
+
+            navigationController?.pushViewController(userDetailsViewController, animated: true)
+        }
+    }
+
 }
