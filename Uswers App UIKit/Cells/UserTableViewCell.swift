@@ -17,9 +17,15 @@ class UserTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        layoutCell()
+    }
+    
+    func layoutCell() {
+        avatarImageView.layer.cornerRadius = 10
     }
     
     func configure(with user: UserUI) {
+        
         self.userNameLabel.text = user.name
         self.locationLabel.text = user.location
         

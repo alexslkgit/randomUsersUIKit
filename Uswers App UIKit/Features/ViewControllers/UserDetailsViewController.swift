@@ -24,7 +24,7 @@ class UserDetailsViewController: UIViewController {
         nameLabel.text = viewModel.user.name
         locationLabel.text = viewModel.user.location
         avatarImageView.loadImage(viewModel.user.mediumImageURL,
-                                  placeholderImage: UIImage(named: "person-thumbnail"),
+                                  placeholderImage: UIImage(named: Constants.Images.userLogo),
                                   smallImageUrl: viewModel.user.thumbnailURL)
     }
     

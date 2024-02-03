@@ -12,34 +12,35 @@ extension UIImageView {
                    smallImageUrl: URLConvertible? = nil) {
         
         self.image = placeholderImage
-        
-        let loadImageFromUrl: (URLConvertible?, @escaping (UIImage?) -> Void) -> Void = { [weak self] imageUrlConvertible, completion in
-            guard let self = self, let urlConvertible = imageUrlConvertible, let url = urlConvertible.asURL() else {
-                completion(nil)
-                return
+
+        Task { @MainActor in
+            if let smallImage = await downloadImage(from: smallImageUrl) {
+                self.image = smallImage
             }
             
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                guard let imageData = data, error == nil, let image = UIImage(data: imageData) else {
-                    completion(nil)
-                    return
-                }
-                DispatchQueue.main.async {
-                    completion(image)
-                }
-            }.resume()
+            if let largeImage = await downloadImage(from: imageUrl) {
+                self.image = largeImage
+            }
+        }
+    }
+    
+    private func downloadImage(from urlConvertible: URLConvertible?) async -> UIImage? {
+        
+        guard let urlConvertible = urlConvertible, let url = urlConvertible.asURL() else {
+            return nil
         }
         
-        loadImageFromUrl(smallImageUrl) { [weak self] smallImage in
-            if let smallImage = smallImage {
-                self?.image = smallImage
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            if let image = UIImage(data: data) {
+                return image
+            } else {
+                debugPrint("Error procesing image from Data")
+                return nil
             }
-            
-            loadImageFromUrl(imageUrl) { largeImage in
-                if let largeImage = largeImage {
-                    self?.image = largeImage
-                }
-            }
+        } catch {
+            debugPrint("Image loading error: \(error)")
+            return nil
         }
     }
 }

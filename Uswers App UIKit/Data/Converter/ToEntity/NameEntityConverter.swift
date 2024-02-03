@@ -3,7 +3,6 @@
 //  Users App UIKit
 //
 
-import Foundation
 import CoreData
 
 class NameEntityConverter: ToEntityConverter {
@@ -16,7 +15,7 @@ class NameEntityConverter: ToEntityConverter {
         guard let input else { return nil }
     
         let nameEntity = UserNameEntity(context: context)
-        nameEntity.title = input.title?.rawValue
+        nameEntity.title = input.title
         nameEntity.first = input.first
         nameEntity.last = input.last
         return nameEntity

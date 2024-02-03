@@ -28,12 +28,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         usersListViewController.viewModel = viewModel
         
         let usersNavigationController = UINavigationController(rootViewController: usersListViewController)
-        usersNavigationController.tabBarItem = UITabBarItem(title: "Users", image: nil, selectedImage: nil)
+        usersNavigationController.tabBarItem = UITabBarItem(title: Constants.Localizations.firstTabTitle,
+                                                            image: UIImage(named: Constants.Images.userLogo),
+                                                            selectedImage: nil)
         
         guard let settingsViewController = storyboard.instantiateViewController(withIdentifier: "SettingsViewController") as? SettingsViewController else {
             return
         }
-        settingsViewController.tabBarItem = UITabBarItem(title: "Settings", image: nil, selectedImage: nil)
+        settingsViewController.tabBarItem = UITabBarItem(title: Constants.Localizations.secondTabTitle,
+                                                         image: UIImage(named: Constants.Images.settingsLogo),
+                                                         selectedImage: nil)
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [usersNavigationController, settingsViewController]

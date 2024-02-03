@@ -3,7 +3,6 @@
 //  Users App UIKit
 //
 
-import Foundation
 import CoreData
 
 protocol ToEntityConverter {

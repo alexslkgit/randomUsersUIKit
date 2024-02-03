@@ -1,11 +1,10 @@
 //
-//  CoreDataManager.swift
+//  CoreDataService.swift
 //  Users App UIKit
 //
 //  Created by Slobodianiuk Oleksandr on 28.01.2024.
 //
 
-import Foundation
 import CoreData
 
 class CoreDataManager {
