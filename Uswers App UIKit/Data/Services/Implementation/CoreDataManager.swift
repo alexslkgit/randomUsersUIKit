@@ -7,7 +7,7 @@
 
 import CoreData
 
-class CoreDataManager {
+class CoreDataManager: DataManager {
     
     private let coreDataStack: CoreDataStack
     

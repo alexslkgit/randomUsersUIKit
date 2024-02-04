@@ -7,23 +7,23 @@ import UIKit
 
 @MainActor
 class UsersListViewController: UIViewController {
+
+    private lazy var tableView = UIFactory.createTableView(rowHeight: Constants.Layout.rowHeight,
+                                                           dataSource: self,
+                                                           delegate: self,
+                                                           cellType: UserTableViewCell.self)
+    private lazy var refreshControl = UIFactory.createRefreshControl(target: self,
+                                                                     action: #selector(refreshData(_:)))
     
-    @IBOutlet weak var tableView: UITableView!
     
-    private lazy var refreshControl: UIRefreshControl = {
-        let control = UIRefreshControl()
-        control.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
-        return control
-    }()
-    
-    var viewModel: UsersListViewModel! {
+    @ViewModel var viewModel: UsersListViewModel {
         didSet {
             loadViewIfNeeded()
-            self.fetchUsers()
+            fetchUsers()
         }
     }
     
-    // MARK: Life cycle
+    // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +31,16 @@ class UsersListViewController: UIViewController {
         setupUI()
     }
     
-    // MARK: Data Sourse
+    // MARK: - Private
     
     private func setupUI() {
-        tableView.register(cell: UserTableViewCell.self)
-        tableView.rowHeight = Constants.Size.rowHeight
+        view.addSubview(tableView)
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
         tableView.refreshControl = refreshControl
     }
     
@@ -90,8 +95,7 @@ extension UsersListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         Task { @MainActor in
-            let storyboard = UIStoryboard(name: Constants.Storyboard.main, bundle: nil)
-            guard let userDetailsVC = storyboard.instantiateViewController(ofType: UserDetailsViewController.self) else { return }
+            let userDetailsVC = UserDetailsViewController()
             let user = viewModel.cellForRowAt(indexPath)
             userDetailsVC.viewModel = UserDetailsViewModel(user: user)
             userDetailsVC.hidesBottomBarWhenPushed = true
