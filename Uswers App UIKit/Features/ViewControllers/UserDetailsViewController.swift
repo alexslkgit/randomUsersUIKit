@@ -5,15 +5,16 @@
 
 import UIKit
 
+@MainActor
 class UserDetailsViewController: UIViewController {
-   
+    
     private let avatarImageView = UIFactory.createImageView(accessID: Constants.AccessID.avatarImageView)
     private let nameLabel = UIFactory.createLabel(accessID: Constants.AccessID.nameLabel)
     private let locationLabel = UIFactory.createLabel(accessID: Constants.AccessID.locationLabel)
-    private let backItem = UIFactory.createBackItem(title: Constants.Localizations.backToList, 
+    private let backItem = UIFactory.createBackItem(title: Constants.Localizations.backToList,
                                                     accessID: Constants.AccessID.backBarButtonItem)
     
-    var viewModel: UserDetailsViewModel!
+    @ViewModel var viewModel: UserDetailsViewModel
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,7 @@ class UserDetailsViewController: UIViewController {
                                   smallImageUrl: viewModel.user.thumbnailURL)
         
         let spacing = Constants.Layout.defaultSpacing
+        
         NSLayoutConstraint.activate([
             avatarImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             avatarImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

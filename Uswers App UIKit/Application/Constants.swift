@@ -29,14 +29,15 @@ struct Constants {
     }
     
     struct AccessID {
-        static let mainTableView = "MainTableView"
-        static let tabBar = "TabBar"
-        static let avatarImageView = "AvatarImageView"
-        static let usersTabBarItem = "UsersTabBarItem"
-        static let settingsTabBarItem = "SettingsTabBarItem"
+        static let mainTableView = "mainTableView"
+        static let tabBar = "tabBar"
+        static let avatarImageView = "avatarImageView"
+        static let usersTabBarItem = "usersTabBarItem"
+        static let settingsTabBarItem = "settingsTabBarItem"
         static let nameLabel = "nameLabel"
         static let locationLabel = "locationLabel"
-        static let backBarButtonItem = "BackBarButtonItem"
+        static let backBarButtonItem = "backBarButtonItem"
+        static let fullScreenImageView = "fullScreenImageView"
     }
     
     

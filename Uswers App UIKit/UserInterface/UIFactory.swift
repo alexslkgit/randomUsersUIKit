@@ -7,27 +7,7 @@ import UIKit
 
 struct UIFactory {
     
-    static func createLabel(text: String = "",
-                            alignment: NSTextAlignment = .center,
-                            isTranslatesAutoresizingMaskIntoConstraints: Bool = false,
-                            accessID: String? = nil) -> UILabel {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = isTranslatesAutoresizingMaskIntoConstraints
-        label.textAlignment = alignment
-        label.text = text
-        label.accessibilityIdentifier = accessID
-        return label
-    }
-    
-    static func createImageView(contentMode: UIView.ContentMode = .scaleAspectFit, 
-                                isTranslatesAutoresizingMaskIntoConstraints: Bool = false,
-                                accessID: String? = nil) -> UIImageView {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = isTranslatesAutoresizingMaskIntoConstraints
-        imageView.contentMode = contentMode
-        imageView.accessibilityIdentifier = accessID
-        return imageView
-    }
+    // MARK: - TableView
     
     static func createTableView(rowHeight: CGFloat, 
                                 dataSource: UITableViewDataSource,
@@ -50,6 +30,8 @@ struct UIFactory {
         refreshControl.addTarget(target, action: action, for: .valueChanged)
         return refreshControl
     }
+    
+    // MARK: - Navigation
     
     static func createTabBarController(viewControllers: [UIViewController], 
                                        accessID: String? = nil) -> UITabBarController {
@@ -77,5 +59,41 @@ struct UIFactory {
         return backItem
     }
     
-   
+    // MARK: - Image View
+    
+    static func createImageView(contentMode: UIView.ContentMode = .scaleAspectFit,
+                                isTranslatesAutoresizingMaskIntoConstraints: Bool = false,
+                                accessID: String? = nil) -> UIImageView {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = isTranslatesAutoresizingMaskIntoConstraints
+        imageView.contentMode = contentMode
+        imageView.accessibilityIdentifier = accessID
+        return imageView
+    }
+    
+    // MARK: - Gestures
+
+    static func createTapGesture(target: Any?, action: Selector) -> UITapGestureRecognizer {
+        return UITapGestureRecognizer(target: target, action: action)
+    }
+
+    static func createSwipeGesture(target: Any?, action: Selector, direction: UISwipeGestureRecognizer.Direction) -> UISwipeGestureRecognizer {
+        let swipeGesture = UISwipeGestureRecognizer(target: target, action: action)
+        swipeGesture.direction = direction
+        return swipeGesture
+    }
+    
+    // MARK: - Elements
+
+    static func createLabel(text: String = "",
+                            alignment: NSTextAlignment = .center,
+                            isTranslatesAutoresizingMaskIntoConstraints: Bool = false,
+                            accessID: String? = nil) -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = isTranslatesAutoresizingMaskIntoConstraints
+        label.textAlignment = alignment
+        label.text = text
+        label.accessibilityIdentifier = accessID
+        return label
+    }
 }

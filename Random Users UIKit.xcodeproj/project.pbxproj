@@ -50,6 +50,8 @@
 		67FDD40B2B6FC0A3003DC8C9 /* UIFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FDD40A2B6FC0A3003DC8C9 /* UIFactory.swift */; };
 		67FDD40C2B6FD44C003DC8C9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A43B4A2B696FC300679AE6 /* Constants.swift */; };
 		67FDD40D2B6FD44D003DC8C9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A43B4A2B696FC300679AE6 /* Constants.swift */; };
+		67FDD40F2B6FE794003DC8C9 /* FullScreenImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FDD40E2B6FE794003DC8C9 /* FullScreenImageViewController.swift */; };
+		67FDD4112B6FE872003DC8C9 /* FullScreenImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FDD4102B6FE872003DC8C9 /* FullScreenImageViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +117,8 @@
 		67E7F1C72B6E854100AEDC0D /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		67FDD4072B6FC019003DC8C9 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		67FDD40A2B6FC0A3003DC8C9 /* UIFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFactory.swift; sourceTree = "<group>"; };
+		67FDD40E2B6FE794003DC8C9 /* FullScreenImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenImageViewController.swift; sourceTree = "<group>"; };
+		67FDD4102B6FE872003DC8C9 /* FullScreenImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenImageViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,6 +348,7 @@
 				67A536A92B682F3400C53E26 /* SettingsViewController.swift */,
 				670699202B5FEC7E00B5DB4A /* UsersListViewController.swift */,
 				67A536AB2B682F7D00C53E26 /* UserDetailsViewController.swift */,
+				67FDD40E2B6FE794003DC8C9 /* FullScreenImageViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -353,6 +358,7 @@
 			children = (
 				670699642B63FCFD00B5DB4A /* UsersListViewModel.swift */,
 				67A536B12B68312100C53E26 /* UserDetailsViewModel.swift */,
+				67FDD4102B6FE872003DC8C9 /* FullScreenImageViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -520,6 +526,7 @@
 				67A536972B66BBEB00C53E26 /* NameEntityConverter.swift in Sources */,
 				670699212B5FEC7E00B5DB4A /* UsersListViewController.swift in Sources */,
 				6706991D2B5FEC7E00B5DB4A /* AppDelegate.swift in Sources */,
+				67FDD40F2B6FE794003DC8C9 /* FullScreenImageViewController.swift in Sources */,
 				67A43B542B69771900679AE6 /* MockURLSession.swift in Sources */,
 				67A536A12B66CE6600C53E26 /* ToUIConverter.swift in Sources */,
 				670699572B6005B800B5DB4A /* UITableView+Extension.swift in Sources */,
@@ -537,6 +544,7 @@
 				67A536AC2B682F7D00C53E26 /* UserDetailsViewController.swift in Sources */,
 				67A536932B66ADC300C53E26 /* UserEntityConverter.swift in Sources */,
 				67A536AE2B68308400C53E26 /* UIStoryboard+Extension.swift in Sources */,
+				67FDD4112B6FE872003DC8C9 /* FullScreenImageViewModel.swift in Sources */,
 				67FDD4082B6FC019003DC8C9 /* ViewModel.swift in Sources */,
 				67A536AA2B682F3400C53E26 /* SettingsViewController.swift in Sources */,
 				67A536A32B66CECC00C53E26 /* UserEntityToUIConverter.swift in Sources */,
