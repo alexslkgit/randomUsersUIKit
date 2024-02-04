@@ -11,10 +11,11 @@ class UsersListViewController: UIViewController {
     private lazy var tableView = UIFactory.createTableView(rowHeight: Constants.Layout.rowHeight,
                                                            dataSource: self,
                                                            delegate: self,
-                                                           cellType: UserTableViewCell.self)
+                                                           cellType: UserTableViewCell.self, 
+                                                           accessID: Constants.AccessID.mainTableView)
+    
     private lazy var refreshControl = UIFactory.createRefreshControl(target: self,
                                                                      action: #selector(refreshData(_:)))
-    
     
     @ViewModel var viewModel: UsersListViewModel {
         didSet {

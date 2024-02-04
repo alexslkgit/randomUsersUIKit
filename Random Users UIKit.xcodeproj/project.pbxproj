@@ -48,6 +48,8 @@
 		67E7F1C82B6E854100AEDC0D /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E7F1C72B6E854100AEDC0D /* NetworkError.swift */; };
 		67FDD4082B6FC019003DC8C9 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FDD4072B6FC019003DC8C9 /* ViewModel.swift */; };
 		67FDD40B2B6FC0A3003DC8C9 /* UIFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FDD40A2B6FC0A3003DC8C9 /* UIFactory.swift */; };
+		67FDD40C2B6FD44C003DC8C9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A43B4A2B696FC300679AE6 /* Constants.swift */; };
+		67FDD40D2B6FD44D003DC8C9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A43B4A2B696FC300679AE6 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -553,6 +555,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67FDD40D2B6FD44D003DC8C9 /* Constants.swift in Sources */,
 				67A43B4D2B6973CB00679AE6 /* NetworkManagerTests.swift in Sources */,
 				67A700D32B6BCC98008EC6E8 /* DataManagerTests.swift in Sources */,
 				67A700D12B6AC9E4008EC6E8 /* LocationEntityConverterTests.swift in Sources */,
@@ -566,6 +569,7 @@
 			files = (
 				670699432B5FEC7F00B5DB4A /* Uswers_App_UIKitUITestsLaunchTests.swift in Sources */,
 				67E7F1C42B6C016E00AEDC0D /* Uswers_App_UIKitUITests.swift in Sources */,
+				67FDD40C2B6FD44C003DC8C9 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

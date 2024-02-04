@@ -11,8 +11,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var coreDataManager: CoreDataManager?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-              let windowScene = scene as? UIWindowScene else { return }
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
 
         let toUIConverter = UserEntityToUIConverter()
         let networkManager = NetworkManagerUrlSession()
@@ -21,25 +21,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                            networkManager: networkManager,
                                            toUIConverter: toUIConverter)
 
+      
         let usersListViewController = UsersListViewController()
         usersListViewController.viewModel = viewModel
 
-        let usersNavigationController = UINavigationController(rootViewController: usersListViewController)
-        usersNavigationController.tabBarItem = UITabBarItem(title: Constants.Localizations.firstTabTitle,
-                                                            image: UIImage(named: Constants.Images.userLogo),
-                                                            selectedImage: nil)
+        let usersNavigationController = UIFactory.createNavigationController(
+            rootViewController: usersListViewController,
+            tabTitle: Constants.Localizations.firstTabTitle,
+            image: UIImage(named: Constants.Images.userLogo),
+            selectedImage: nil,
+            accessID: Constants.AccessID.usersTabBarItem
+        )
 
         let settingsViewController = SettingsViewController()
-        settingsViewController.tabBarItem = UITabBarItem(title: Constants.Localizations.secondTabTitle,
-                                                         image: UIImage(named: Constants.Images.settingsLogo),
-                                                         selectedImage: nil)
+        settingsViewController.tabBarItem = UITabBarItem(
+            title: Constants.Localizations.secondTabTitle,
+            image: UIImage(named: Constants.Images.settingsLogo),
+            selectedImage: nil
+        )
+        settingsViewController.tabBarItem.accessibilityIdentifier = Constants.AccessID.settingsTabBarItem
 
-        let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [usersNavigationController, settingsViewController]
+        let tabBarController = UIFactory.createTabBarController(
+            viewControllers: [usersNavigationController, settingsViewController],
+            accessID: Constants.AccessID.tabBar
+        )
 
-        window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = tabBarController
-        window?.makeKeyAndVisible()
+        if let windowScene = scene as? UIWindowScene {
+            window = UIWindow(windowScene: windowScene)
+            window?.rootViewController = tabBarController
+            window?.makeKeyAndVisible()
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

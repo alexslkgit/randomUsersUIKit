@@ -7,9 +7,11 @@ import UIKit
 
 class UserDetailsViewController: UIViewController {
    
-    private let avatarImageView = UIFactory.createImageView(contentMode: .scaleAspectFit)
-    private let nameLabel = UIFactory.createLabel(alignment: .center)
-    private let locationLabel = UIFactory.createLabel(alignment: .center)
+    private let avatarImageView = UIFactory.createImageView(accessID: Constants.AccessID.avatarImageView)
+    private let nameLabel = UIFactory.createLabel(accessID: Constants.AccessID.nameLabel)
+    private let locationLabel = UIFactory.createLabel(accessID: Constants.AccessID.locationLabel)
+    private let backItem = UIFactory.createBackItem(title: Constants.Localizations.backToList, 
+                                                    accessID: Constants.AccessID.backBarButtonItem)
     
     var viewModel: UserDetailsViewModel!
 
@@ -23,10 +25,13 @@ class UserDetailsViewController: UIViewController {
     // MARK: - Private
 
     private func setupUI() {
+        
         view.backgroundColor = .white
         view.addSubview(avatarImageView)
         view.addSubview(nameLabel)
         view.addSubview(locationLabel)
+ 
+        navigationController?.navigationBar.topItem?.backBarButtonItem = backItem
         
         nameLabel.text = viewModel.user.name
         locationLabel.text = viewModel.user.location

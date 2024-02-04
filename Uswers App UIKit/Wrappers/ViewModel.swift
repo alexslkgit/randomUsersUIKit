@@ -9,6 +9,7 @@ import Foundation
 
 @propertyWrapper
 struct ViewModel<ViewModelType> {
+    
     private var value: ViewModelType?
     
     var wrappedValue: ViewModelType {

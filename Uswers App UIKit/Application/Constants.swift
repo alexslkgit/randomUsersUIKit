@@ -25,6 +25,23 @@ struct Constants {
         static let OK = "OK"
         static let error = "Error"
         static let settingsScreen = "Settings screen"
+        static let backToList = "Users list"
     }
+    
+    struct AccessID {
+        static let mainTableView = "MainTableView"
+        static let tabBar = "TabBar"
+        static let avatarImageView = "AvatarImageView"
+        static let usersTabBarItem = "UsersTabBarItem"
+        static let settingsTabBarItem = "SettingsTabBarItem"
+        static let nameLabel = "nameLabel"
+        static let locationLabel = "locationLabel"
+        static let backBarButtonItem = "BackBarButtonItem"
+    }
+    
+    
+    
+    
+    
 }
 
