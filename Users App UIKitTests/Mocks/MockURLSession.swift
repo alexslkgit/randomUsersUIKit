@@ -6,18 +6,34 @@
 import Foundation
 
 class MockURLSession: URLSession {
-    
-    var data: Data?
-    var response: URLResponse?
-    var error: Error?
+    var nextData: Data?
+    var nextError: Error?
+    var nextResponse: URLResponse?
 
-    override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        let data = self.data
-        let response = self.response
-        let error = self.error
-        
-        return URLSession.shared.dataTask(with: request) { _, _, _ in
+    func mockDataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+        let data = nextData
+        let error = nextError
+        let response = nextResponse
+
+        return MockURLSessionDataTask {
             completionHandler(data, response, error)
         }
+    }
+
+    override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+        return mockDataTask(with: request, completionHandler: completionHandler)
+    }
+}
+
+class MockURLSessionDataTask: URLSessionDataTask {
+    
+    private let closure: () -> Void
+
+    init(closure: @escaping () -> Void) {
+        self.closure = closure
+    }
+
+    override func resume() {
+        closure()
     }
 }

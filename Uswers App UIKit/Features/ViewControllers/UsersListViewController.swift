@@ -66,6 +66,7 @@ class UsersListViewController: UIViewController {
                 case .failure(let error):
                     self?.handleError(error)
                 }
+                self?.refreshControl.endRefreshing()
             }
         }
     }

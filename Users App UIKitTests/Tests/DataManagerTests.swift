@@ -16,7 +16,7 @@ class CoreDataManagerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        mockCoreDataStack = CoreDataStack(modelName: "Users_App_UIKit")
+        mockCoreDataStack = CoreDataStack(modelName: Constants.Data.coreDataModel)
         mockManagedObjectContext = mockCoreDataStack.newBackgroundContext()
         coreDataManager = CoreDataManager(coreDataStack: mockCoreDataStack)
     }

@@ -2,8 +2,6 @@
 //  UserTableViewCell.swift
 //  Users App UIKit
 //
-//  Created by Slobodianiuk Oleksandr on 26.01.2024.
-//
 
 import UIKit
 
@@ -14,14 +12,18 @@ class UserTableViewCell: UITableViewCell {
 
     @IBOutlet weak var avatarImageView: UIImageView!
     
+    // MARK: - Life cycle
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        layoutCell()
+        avatarImageView.layer.cornerRadius = 10
     }
     
-    func layoutCell() {
-        avatarImageView.layer.cornerRadius = 10
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        avatarImageView.tag = 0
+        avatarImageView.image = nil
     }
     
     func configure(with user: UserUI) {
@@ -36,7 +38,5 @@ class UserTableViewCell: UITableViewCell {
         avatarImageView.loadImage(largeImageURL,
                                   placeholderImage: personPlaceholderImage,
                                   smallImageUrl: thumbnailURL)
-
     }
-    
 }

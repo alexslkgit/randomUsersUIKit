@@ -28,7 +28,7 @@ class LocationEntityConverterTests: XCTestCase {
         let persistentStoreDescription = NSPersistentStoreDescription()
         persistentStoreDescription.type = NSInMemoryStoreType
 
-        let container = NSPersistentContainer(name: "Users_App_UIKit")
+        let container = NSPersistentContainer(name: Constants.Data.coreDataModel)
         container.persistentStoreDescriptions = [persistentStoreDescription]
         container.loadPersistentStores { (description, error) in
             if let error = error {

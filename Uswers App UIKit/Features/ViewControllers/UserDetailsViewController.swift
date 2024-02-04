@@ -41,12 +41,14 @@ class UserDetailsViewController: UIViewController {
                                   smallImageUrl: viewModel.user.thumbnailURL)
         
         let spacing = Constants.Layout.defaultSpacing
-        
+        let avatarWidth = view.frame.width / 2
+
         NSLayoutConstraint.activate([
-            avatarImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            avatarImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            avatarImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            avatarImageView.heightAnchor.constraint(equalTo: view.widthAnchor),
+            
+            avatarImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            avatarImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constants.Layout.defaultSpacing),
+            avatarImageView.widthAnchor.constraint(equalToConstant: avatarWidth),
+            avatarImageView.heightAnchor.constraint(equalToConstant: avatarWidth),
             
             nameLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: spacing),
             nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: spacing),
@@ -65,8 +67,11 @@ class UserDetailsViewController: UIViewController {
         avatarImageView.isUserInteractionEnabled = true
         avatarImageView.addGestureRecognizer(tapGestureRecognizer)
     }
-
+    
     @objc private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        avatarImageView.loadImage(viewModel.user.largeImageURL)
+        let fullScreenVC = FullScreenImageViewController()
+        fullScreenVC.viewModel = FullScreenImageViewModel(imageURL: viewModel.user.largeImageURL)
+        fullScreenVC.modalPresentationStyle = .fullScreen
+        present(fullScreenVC, animated: true)
     }
 }

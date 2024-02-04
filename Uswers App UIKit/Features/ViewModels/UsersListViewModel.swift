@@ -26,6 +26,7 @@ class UsersListViewModel {
             switch result {
             case .success():
                 self?.fetchUsersFromNetwork(completion: completion)
+                completion(.success(()))
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -35,10 +36,10 @@ class UsersListViewModel {
     // MARK: - Private
     
     private func fetchCachedUsers(completion: @escaping (Result<Void, Error>) -> Void) {
+        
         coreDataManager.fetchCachedUsers { [weak self] result in
             switch result {
             case .success(let userEntities):
-                print(userEntities.count)
                 self?.usersArray = userEntities.compactMap { self?.toUIConverter.mapToUI(userEntity: $0) }
                 completion(.success(()))
             case .failure(let error):

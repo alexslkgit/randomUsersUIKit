@@ -9,7 +9,7 @@ struct UIFactory {
     
     // MARK: - TableView
     
-    static func createTableView(rowHeight: CGFloat, 
+    static func createTableView(rowHeight: CGFloat,
                                 dataSource: UITableViewDataSource,
                                 delegate: UITableViewDelegate,
                                 isTranslatesAutoresizingMaskIntoConstraints: Bool = false,
@@ -31,9 +31,20 @@ struct UIFactory {
         return refreshControl
     }
     
+    // MARK: - TableView
+    
+    static func createScrollView(delegate: UIScrollViewDelegate) -> UIScrollView {
+        let scrollView = UIScrollView()
+        scrollView.delegate = delegate
+        scrollView.minimumZoomScale = 1.0
+        scrollView.maximumZoomScale = 3.0
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }
+    
     // MARK: - Navigation
     
-    static func createTabBarController(viewControllers: [UIViewController], 
+    static func createTabBarController(viewControllers: [UIViewController],
                                        accessID: String? = nil) -> UITabBarController {
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = viewControllers
@@ -72,11 +83,11 @@ struct UIFactory {
     }
     
     // MARK: - Gestures
-
+    
     static func createTapGesture(target: Any?, action: Selector) -> UITapGestureRecognizer {
         return UITapGestureRecognizer(target: target, action: action)
     }
-
+    
     static func createSwipeGesture(target: Any?, action: Selector, direction: UISwipeGestureRecognizer.Direction) -> UISwipeGestureRecognizer {
         let swipeGesture = UISwipeGestureRecognizer(target: target, action: action)
         swipeGesture.direction = direction
@@ -84,7 +95,7 @@ struct UIFactory {
     }
     
     // MARK: - Elements
-
+    
     static func createLabel(text: String = "",
                             alignment: NSTextAlignment = .center,
                             isTranslatesAutoresizingMaskIntoConstraints: Bool = false,
@@ -96,4 +107,13 @@ struct UIFactory {
         label.accessibilityIdentifier = accessID
         return label
     }
+    
+    static func createActivityIndicator() -> UIActivityIndicatorView {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.color = .white
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.startAnimating()
+        return indicator
+    }
+    
 }

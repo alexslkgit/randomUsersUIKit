@@ -40,9 +40,12 @@ struct Constants {
         static let fullScreenImageView = "fullScreenImageView"
     }
     
+    struct Data {
+        static let coreDataModel = "Users_App_UIKit"
+    }
     
-    
-    
-    
+    struct API {
+        static let randomUserMockURL = "https://randomuser.me/api/?results=100"
+    }
 }
 

@@ -14,8 +14,8 @@ class NetworkManagerUrlSession: NetworkManager {
     
     func fetchUsers(completion: @escaping (Result<[User], NetworkError>) -> Void) {
         
-        let urlString = "https://randomuser.me/api/?results=100"
-        
+        let urlString = Constants.API.randomUserMockURL
+
         guard let url = URL(string: urlString) else {
             completion(.failure(.invalidURL))
             return
