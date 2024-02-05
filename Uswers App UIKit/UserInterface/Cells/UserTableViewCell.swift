@@ -33,7 +33,7 @@ class UserTableViewCell: UITableViewCell {
         
         let largeImageURL = user.largeImageURL.asURL()
         let thumbnailURL = user.thumbnailURL.asURL()
-        let personPlaceholderImage = UIImage(named: "person-thumbnail")
+        let personPlaceholderImage = UIImage(named: Constants.Images.userLogo)
         
         avatarImageView.loadImage(largeImageURL,
                                   placeholderImage: personPlaceholderImage,

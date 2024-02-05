@@ -35,11 +35,11 @@ extension UIImageView {
             if let image = UIImage(data: data) {
                 return image
             } else {
-                debugPrint("Error procesing image from Data")
+                debugPrint(Constants.ErrorMessage.processingImage)
                 return nil
             }
         } catch {
-            debugPrint("Image loading error: \(error)")
+            debugPrint(Constants.ErrorMessage.imageLoadingError(error))
             return nil
         }
     }

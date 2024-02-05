@@ -47,5 +47,15 @@ struct Constants {
     struct API {
         static let randomUserMockURL = "https://randomuser.me/api/?results=100"
     }
+    
+    struct ErrorMessage {
+        
+        static let dequeCell = "Failed to dequeue cell. Check the extension UITableView"
+        static let processingImage = "Error procesing image from Data"
+        static func imageLoadingError(_ error: Error) -> String {
+            "Image loading error: \(error.localizedDescription)"
+        }
+        
+    }
 }
 

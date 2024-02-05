@@ -6,7 +6,7 @@
 import UIKit
 
 @MainActor
-class UserDetailsViewController: UIViewController {
+final class UserDetailsViewController: UIViewController {
     
     private let avatarImageView = UIFactory.createImageView(accessID: Constants.AccessID.avatarImageView)
     private let nameLabel = UIFactory.createLabel(accessID: Constants.AccessID.nameLabel)
@@ -69,6 +69,7 @@ class UserDetailsViewController: UIViewController {
     }
     
     @objc private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        
         let fullScreenVC = FullScreenImageViewController()
         fullScreenVC.viewModel = FullScreenImageViewModel(imageURL: viewModel.user.largeImageURL)
         fullScreenVC.modalPresentationStyle = .fullScreen

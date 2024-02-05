@@ -6,6 +6,7 @@
 import Foundation
 
 enum NetworkError: Error, Equatable {
+
     case invalidURL
     case error(String)
     case noData

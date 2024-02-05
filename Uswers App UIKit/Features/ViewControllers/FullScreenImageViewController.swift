@@ -6,7 +6,7 @@
 import UIKit
 
 @MainActor
-class FullScreenImageViewController: UIViewController {
+final class FullScreenImageViewController: UIViewController {
 
     @ViewModel var viewModel: FullScreenImageViewModel
 

@@ -6,6 +6,7 @@
 import UIKit
 
 class FullScreenImageViewModel {
+    
     let imageURL: String
     
     init(imageURL: String) {

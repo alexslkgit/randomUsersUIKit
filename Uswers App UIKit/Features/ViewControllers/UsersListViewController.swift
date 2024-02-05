@@ -6,7 +6,7 @@
 import UIKit
 
 @MainActor
-class UsersListViewController: UIViewController {
+final class UsersListViewController: UIViewController {
 
     private lazy var tableView = UIFactory.createTableView(rowHeight: Constants.Layout.rowHeight,
                                                            dataSource: self,
