@@ -3,7 +3,6 @@
 //  Users App UIKit
 //
 
-import Foundation
 import CoreData
 
 class CoreDataStack {
@@ -19,7 +18,7 @@ class CoreDataStack {
         
         container.loadPersistentStores { storeDescription, error in
             if let error = error {
-                fatalError("Unresolved error \(error)")
+                debugPrint(Constants.ErrorMessage.coreDataImposibleToLoadStore(error))
             }
         }
         
@@ -31,12 +30,13 @@ class CoreDataStack {
     }
     
     func saveContext() {
-        let context = persistentContainer.viewContext
+        let context = viewContext
         if context.hasChanges {
             do {
                 try context.save()
             } catch {
-                fatalError("Unresolved error \(error)")
+                // Log error and send analitycs event to Firebase
+                debugPrint(Constants.ErrorMessage.coreDataImposibleToSaveContext(error))
             }
         }
     }

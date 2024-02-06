@@ -49,13 +49,20 @@ struct Constants {
     }
     
     struct ErrorMessage {
-        
         static let dequeCell = "Failed to dequeue cell. Check the extension UITableView"
         static let processingImage = "Error procesing image from Data"
+        
         static func imageLoadingError(_ error: Error) -> String {
             "Image loading error: \(error.localizedDescription)"
         }
         
+        static func coreDataImposibleToSaveContext(_ error: Error) -> String {
+            "Imposible to save Context. Error \(error)"
+        }
+        
+        static func coreDataImposibleToLoadStore(_ error: Error) -> String {
+            "Imposible to load data store. Error \(error)"
+        }
     }
 }
 

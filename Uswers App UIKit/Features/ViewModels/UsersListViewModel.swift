@@ -22,13 +22,16 @@ class UsersListViewModel {
     }
     
     func fetchUsers(completion: @escaping (Result<Void, Error>) -> Void) {
-        fetchCachedUsers { [weak self] result in
-            switch result {
-            case .success():
-                self?.fetchUsersFromNetwork(completion: completion)
-                completion(.success(()))
-            case .failure(let error):
-                completion(.failure(error))
+        Task {
+            fetchCachedUsers { [weak self] result in
+                guard let self else { return }
+                switch result {
+                case .success():
+                    completion(.success(()))
+                    self.fetchUsersFromNetwork(completion: completion)
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
         }
     }
