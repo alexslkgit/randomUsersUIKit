@@ -36,6 +36,7 @@ final class UsersListViewController: UIViewController {
     
     private func setupUI() {
         view.addSubview(tableView)
+        view.backgroundColor = UIColor(named: Constants.Colors.backgroundMain)
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),

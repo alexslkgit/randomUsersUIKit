@@ -97,3 +97,18 @@ class UsersListViewModel {
         return usersArray[indexPath.row]
     }
 }
+/*
+    We would have liked to see “The Fresh Stack” as well. (SwiftUI)
+    The application is not prepared to work in Dark Mode.
+    Not possible to follow the development process in the git history of the repo.
+    Nice encapsulated and extracted object creation login using factories.
+ 
+    For the NetworkManager: It was preferred prefer use async-await, but completionHandler works fine. That class does too much IMHO. Mapping the user’s response should be extracted.
+ 
+    The created ViewModels seem to function more like Presenters, as it is not possible to see a binding mechanism. Also, there are no Unit Tests for the view models.
+    The navigation from UsersList to UsersDetails is implemented in UsersListViewController, so this feature is not agnostic of UserDetails.
+    Good use of abstractions and injected the interfaces instead of concrete logic. In UsersListViewModel maybe by mistake, he injected concrete core data, which in this case is also leaking framework implementation details (CoreData).
+    CoreData - deletion use case is missing. In this case, it is important to save users in a clean state. And of course, testing this use case is missing.
+    DataManager and NetworkManager should conform to the same protocol for fetching data. It is an implementation detail that one fetches from the remote and the other one from the cache.
+    Overuse of patterns
+ */

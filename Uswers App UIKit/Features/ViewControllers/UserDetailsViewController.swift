@@ -27,7 +27,7 @@ final class UserDetailsViewController: UIViewController {
 
     private func setupUI() {
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: Constants.Colors.backgroundMain)
         view.addSubview(avatarImageView)
         view.addSubview(nameLabel)
         view.addSubview(locationLabel)

@@ -11,6 +11,10 @@ struct Constants {
         static let settingsLogo = "setting"
         static let userLogo = "user"
     }
+    
+    struct Colors {
+        static let backgroundMain = "background-main"
+    }
 
     struct Layout {
         static let rowHeight: CGFloat = 120

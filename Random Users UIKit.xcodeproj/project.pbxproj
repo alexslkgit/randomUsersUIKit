@@ -18,7 +18,7 @@
 		670699572B6005B800B5DB4A /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670699562B6005B800B5DB4A /* UITableView+Extension.swift */; };
 		670699622B63FA4900B5DB4A /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670699602B63FA4900B5DB4A /* UserTableViewCell.swift */; };
 		670699632B63FA4900B5DB4A /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 670699612B63FA4900B5DB4A /* UserTableViewCell.xib */; };
-		670699652B63FCFD00B5DB4A /* UsersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670699642B63FCFD00B5DB4A /* UsersListViewModel.swift */; };
+		670699652B63FCFD00B5DB4A /* UsersListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670699642B63FCFD00B5DB4A /* UsersListPresenter.swift */; };
 		6769A8222B6FAC7500375C76 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6769A8212B6FAC7500375C76 /* NetworkManager.swift */; };
 		6769A8242B6FACA800375C76 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6769A8232B6FACA800375C76 /* DataManager.swift */; };
 		67A43B4B2B696FC300679AE6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A43B4A2B696FC300679AE6 /* Constants.swift */; };
@@ -87,7 +87,7 @@
 		670699562B6005B800B5DB4A /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		670699602B63FA4900B5DB4A /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		670699612B63FA4900B5DB4A /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
-		670699642B63FCFD00B5DB4A /* UsersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewModel.swift; sourceTree = "<group>"; };
+		670699642B63FCFD00B5DB4A /* UsersListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListPresenter.swift; sourceTree = "<group>"; };
 		6769A8212B6FAC7500375C76 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		6769A8232B6FACA800375C76 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		67A43B4A2B696FC300679AE6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -334,7 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				67A536AF2B6830F700C53E26 /* ViewControllers */,
-				67A536B02B68310200C53E26 /* ViewModels */,
+				67A536B02B68310200C53E26 /* Presenters */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -350,14 +350,14 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		67A536B02B68310200C53E26 /* ViewModels */ = {
+		67A536B02B68310200C53E26 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
-				670699642B63FCFD00B5DB4A /* UsersListViewModel.swift */,
+				670699642B63FCFD00B5DB4A /* UsersListPresenter.swift */,
 				67A536B12B68312100C53E26 /* UserDetailsViewModel.swift */,
 				67FDD4102B6FE872003DC8C9 /* FullScreenImageViewModel.swift */,
 			);
-			path = ViewModels;
+			path = Presenters;
 			sourceTree = "<group>";
 		};
 		67A700CB2B6AC93B008EC6E8 /* Converters */ = {
@@ -528,7 +528,7 @@
 				67A536A12B66CE6600C53E26 /* ToUIConverter.swift in Sources */,
 				670699572B6005B800B5DB4A /* UITableView+Extension.swift in Sources */,
 				6706991F2B5FEC7E00B5DB4A /* SceneDelegate.swift in Sources */,
-				670699652B63FCFD00B5DB4A /* UsersListViewModel.swift in Sources */,
+				670699652B63FCFD00B5DB4A /* UsersListPresenter.swift in Sources */,
 				67E7F1C82B6E854100AEDC0D /* NetworkError.swift in Sources */,
 				67A43B4B2B696FC300679AE6 /* Constants.swift in Sources */,
 				67A536A72B6826AC00C53E26 /* URLConvertible.swift in Sources */,

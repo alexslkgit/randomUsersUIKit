@@ -18,7 +18,7 @@ final class SettingsViewController: UIViewController {
     
     private func setupUI() {
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: Constants.Colors.backgroundMain)
         view.addSubview(centralLabel)
         centralLabel.translatesAutoresizingMaskIntoConstraints = false
 
