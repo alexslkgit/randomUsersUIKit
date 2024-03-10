@@ -8,7 +8,7 @@ import UIKit
 @MainActor
 final class FullScreenImageViewController: UIViewController {
 
-    @ViewModel var viewModel: FullScreenImageViewModel
+    @Presenter var presenter: FullScreenImagePresenter
 
     private lazy var imageView: UIImageView = UIFactory.createImageView()
 
@@ -39,7 +39,7 @@ final class FullScreenImageViewController: UIViewController {
     }
     
     private func loadImage() {
-        imageView.loadImage(viewModel.imageURL, 
+        imageView.loadImage(presenter.imageURL, 
                             placeholderImage: UIImage(named: Constants.Images.userLogo))
     }
     

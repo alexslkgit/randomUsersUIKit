@@ -7,41 +7,23 @@ import Foundation
 
 class NetworkManagerUrlSession: NetworkManager {
     
-    let session: URLSessionProtocol
+    let session: URLSession
+    let parser: DataParser
     
-    init(session: URLSessionProtocol = URLSession.shared) {
+    init(session: URLSession = URLSession.shared, 
+         parser: DataParser = DataParser()) {
         self.session = session
+        self.parser = parser
     }
     
-    func fetchUsers(completion: @escaping (Result<[User], NetworkError>) -> Void) {
+    func fetchUsers() async throws -> [User] {
         
         let urlString = Constants.API.randomUserMockURL
-
         guard let url = URL(string: urlString) else {
-            completion(.failure(.invalidURL))
-            return
+            throw NetworkError.invalidURL
         }
         
-        let task = session.customDataTask(with: url) { data, response, error in
-            
-            if let error = error {
-                completion(.failure(.error(error.localizedDescription)))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(.noData))
-                return
-            }
-            
-            do {
-                let usersResponse = try JSONDecoder().decode(RandomUsersList.self, from: data)
-                completion(.success(usersResponse.results ?? []))
-            } catch {
-                completion(.failure(.decodeError))
-            }
-        }
-        
-        task.resume()
+        let (data, _) = try await session.data(from: url)
+        return try parser.parse(from: data, type: RandomUsersList.self).results ?? []
     }
 }

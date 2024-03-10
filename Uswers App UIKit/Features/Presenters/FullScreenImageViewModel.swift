@@ -1,11 +1,11 @@
 //
-//  FullScreenImageViewModel.swift
+//  FullScreenImagePresenter.swift
 //  Random Users UIKit
 //
 
 import UIKit
 
-class FullScreenImageViewModel {
+class FullScreenImagePresenter {
     
     let imageURL: String
     

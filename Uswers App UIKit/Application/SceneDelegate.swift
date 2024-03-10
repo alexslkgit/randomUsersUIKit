@@ -17,13 +17,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let toUIConverter = UserEntityToUIConverter()
         let networkManager = NetworkManagerUrlSession()
         let coreDataManager = appDelegate.coreDataManager!
-        let viewModel = UsersListViewModel(coreDataManager: coreDataManager,
+        let presenter = UsersListPresenter(coreDataManager: coreDataManager,
                                            networkManager: networkManager,
                                            toUIConverter: toUIConverter)
 
       
         let usersListViewController = UsersListViewController()
-        usersListViewController.viewModel = viewModel
+        usersListViewController.presenter = presenter
 
         let usersNavigationController = UIFactory.createNavigationController(
             rootViewController: usersListViewController,

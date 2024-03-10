@@ -14,7 +14,7 @@ final class UserDetailsViewController: UIViewController {
     private let backItem = UIFactory.createBackItem(title: Constants.Localizations.backToList,
                                                     accessID: Constants.AccessID.backBarButtonItem)
     
-    @ViewModel var viewModel: UserDetailsViewModel
+    @Presenter var presenter: UserDetailsPresenter
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,11 +34,11 @@ final class UserDetailsViewController: UIViewController {
  
         navigationController?.navigationBar.topItem?.backBarButtonItem = backItem
         
-        nameLabel.text = viewModel.user.name
-        locationLabel.text = viewModel.user.location
-        avatarImageView.loadImage(viewModel.user.mediumImageURL,
+        nameLabel.text = presenter.user.name
+        locationLabel.text = presenter.user.location
+        avatarImageView.loadImage(presenter.user.mediumImageURL,
                                   placeholderImage: UIImage(named: Constants.Images.userLogo),
-                                  smallImageUrl: viewModel.user.thumbnailURL)
+                                  smallImageUrl: presenter.user.thumbnailURL)
         
         let spacing = Constants.Layout.defaultSpacing
         let avatarWidth = view.frame.width / 2
@@ -71,7 +71,7 @@ final class UserDetailsViewController: UIViewController {
     @objc private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         
         let fullScreenVC = FullScreenImageViewController()
-        fullScreenVC.viewModel = FullScreenImageViewModel(imageURL: viewModel.user.largeImageURL)
+        fullScreenVC.presenter = FullScreenImagePresenter(imageURL: presenter.user.largeImageURL)
         fullScreenVC.modalPresentationStyle = .fullScreen
         present(fullScreenVC, animated: true)
     }

@@ -17,10 +17,12 @@ final class UsersListViewController: UIViewController {
     private lazy var refreshControl = UIFactory.createRefreshControl(target: self,
                                                                      action: #selector(refreshData(_:)))
     
-    @ViewModel var viewModel: UsersListViewModel {
+    @Presenter var presenter: UsersListPresenter {
         didSet {
             loadViewIfNeeded()
-            fetchUsers()
+            Task {
+                await fetchUsers()
+            }
         }
     }
     
@@ -55,19 +57,22 @@ final class UsersListViewController: UIViewController {
     }
     
     @objc private func refreshData(_ sender: Any) {
-        self.fetchUsers()
+        Task {
+            await fetchUsers()
+        }
     }
     
-    private func fetchUsers () {
-        viewModel.fetchUsers { [weak self] result in
-            Task { @MainActor in
-                switch result {
-                case .success():
-                    self?.tableView.reloadData()
-                case .failure(let error):
-                    self?.handleError(error)
-                }
-                self?.refreshControl.endRefreshing()
+    private func fetchUsers() async {
+        do {
+            try await presenter.fetchUsers()
+            await MainActor.run {
+                tableView.reloadData()
+                refreshControl.endRefreshing()
+            }
+        } catch {
+            await MainActor.run {
+                handleError(error)
+                refreshControl.endRefreshing()
             }
         }
     }
@@ -79,7 +84,7 @@ extension UsersListViewController: UITableViewDataSource, UITableViewDelegate {
     // MARK: Data Sourse
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRowsInSection()
+        return presenter.numberOfRowsInSection()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -88,7 +93,7 @@ extension UsersListViewController: UITableViewDataSource, UITableViewDelegate {
     
     private func configureCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell: UserTableViewCell = tableView.dequeueReusableCell(for: UserTableViewCell.self, for: indexPath)
-        let user = viewModel.cellForRowAt(indexPath)
+        let user = presenter.cellForRowAt(indexPath)
         cell.configure(with: user)
         return cell
     }
@@ -99,8 +104,8 @@ extension UsersListViewController: UITableViewDataSource, UITableViewDelegate {
         
         Task { @MainActor in
             let userDetailsVC = UserDetailsViewController()
-            let user = viewModel.cellForRowAt(indexPath)
-            userDetailsVC.viewModel = UserDetailsViewModel(user: user)
+            let user = presenter.cellForRowAt(indexPath)
+            userDetailsVC.presenter = UserDetailsPresenter(user: user)
             userDetailsVC.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(userDetailsVC, animated: true)
         }

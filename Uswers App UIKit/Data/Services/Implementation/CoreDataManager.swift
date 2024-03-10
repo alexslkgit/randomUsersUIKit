@@ -8,47 +8,38 @@ import CoreData
 class CoreDataManager: DataManager {
     
     private let coreDataStack: CoreDataStack
-    
+    private let context: NSManagedObjectContext
+
     init(coreDataStack: CoreDataStack) {
         self.coreDataStack = coreDataStack
+        self.context = coreDataStack.newBackgroundContext()
     }
-
-    func saveUsers(_ users: [User], completion: @escaping (Error?) -> ()) {
+    
+    func saveUsers(_ users: [User]) async throws -> (Void)  {
         
-        let context = coreDataStack.newBackgroundContext()
-        context.perform {
+        try await context.perform {
             let userConverter = UserEntityConverter()
             let locationConverter = LocationEntityConverter()
             let nameConverter = NameEntityConverter()
             let pictureConverter = PictureEntityConverter()
-
+            
             for user in users {
-                guard let userEntity = userConverter.convert(input: user, in: context) else { continue }
-                userEntity.location = locationConverter.convert(input: user.location, in: context)
-                userEntity.name = nameConverter.convert(input: user.name, in: context)
-                userEntity.picture = pictureConverter.convert(input: user.picture, in: context)
+                guard let userEntity = userConverter.convert(input: user, in: self.context) else { continue }
+                userEntity.location = locationConverter.convert(input: user.location, in: self.context)
+                userEntity.name = nameConverter.convert(input: user.name, in: self.context)
+                userEntity.picture = pictureConverter.convert(input: user.picture, in: self.context)
             }
-
-            do {
-                try context.save()
-                completion(nil)
-            } catch {
-                completion(error)
-            }
+            
+            try self.context.save()
         }
     }
-
-    func fetchCachedUsers(completion: @escaping (Result<[UserEntity], Error>) -> ()) {
+    
+    func fetchCachedUsers() async throws -> [UserEntity] {
         
-        let context = coreDataStack.newBackgroundContext()
-        context.perform {
+        return try await self.context.perform {
             let request: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
-            do {
-                let users = try context.fetch(request)
-                completion(.success(users))
-            } catch {
-                completion(.failure(error))
-            }
+            return try self.context.fetch(request)
         }
     }
+    
 }

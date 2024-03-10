@@ -1,11 +1,11 @@
 //
-//  UserDetailsViewModel.swift
+//  UserDetailsPresenter.swift
 //  Random Users UIKit
 //
 
 import Foundation
 
-class UserDetailsViewModel {
+class UserDetailsPresenter {
     
     private(set) var user: UserUI
     

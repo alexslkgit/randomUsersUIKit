@@ -6,5 +6,5 @@
 import Foundation
 
 protocol NetworkManager {
-    func fetchUsers(completion: @escaping (Result<[User], NetworkError>) -> Void)
+    func fetchUsers() async throws -> [User]
 }

@@ -1,5 +1,5 @@
 //
-//  ViewModel.swift
+//  Presenter.swift
 //  Random Users UIKit
 //
 //  Created by Slobodianiuk Oleksandr on 04.02.2024.
@@ -8,14 +8,14 @@
 import Foundation
 
 @propertyWrapper
-struct ViewModel<ViewModelType> {
+struct Presenter<PresenterType> {
     
-    private var value: ViewModelType?
+    private var value: PresenterType?
     
-    var wrappedValue: ViewModelType {
+    var wrappedValue: PresenterType {
         get {
             guard let value = value else {
-                fatalError("viewModel must be set before accessing the ViewController")
+                fatalError("presenter must be set before accessing the ViewController")
             }
             return value
         }
